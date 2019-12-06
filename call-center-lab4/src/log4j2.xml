@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <File name="AllLogsFile" fileName="all.log">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+        <File name="MainFile" fileName="main.log">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+        <File name="OperatorFile" fileName="operator.log">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+        <File name="OrganizationFile" fileName="organization.log">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+        <File name="ClientFile" fileName="client.log">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Logger name="main.Main" level="trace" additivity="false">
+            <AppenderRef ref="AllLogsFile"/>
+            <AppenderRef ref="MainFile"/>
+        </Logger>
+        <Logger name="organization.Operator" level="trace" additivity="false">
+            <AppenderRef ref="AllLogsFile"/>
+            <AppenderRef ref="OperatorFile"/>
+        </Logger>
+        <Logger name="organization.Organization" level="trace" additivity="false">
+            <AppenderRef ref="AllLogsFile"/>
+            <AppenderRef ref="OrganizationFile"/>
+        </Logger>
+        <Logger name="client.Client" level="trace" additivity="false">
+            <AppenderRef ref="AllLogsFile"/>
+            <AppenderRef ref="ClientFile"/>
+        </Logger>
+        <Root level="error">
+            <AppenderRef ref="AllLogsFile"/>
+        </Root>
+    </Loggers>
+</Configuration>
