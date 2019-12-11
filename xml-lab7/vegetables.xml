@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<VegetablesList
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.bsu.by"
+        xsi:schemaLocation="http://www.bsu.by vegetables_schema.xsd">
+
+    <tomato>
+        <weightInGramms>250</weightInGramms>
+        <vegetableState>boiled</vegetableState>
+        <tomatoColor>red</tomatoColor>
+    </tomato>
+
+    <carrot>
+        <weightInGramms>100</weightInGramms>
+        <vegetableState>raw</vegetableState>
+        <isGeneticallyModified>false</isGeneticallyModified>
+    </carrot>
+
+    <cucumber>
+        <weightInGramms>210</weightInGramms>
+        <vegetableState>roasted</vegetableState>
+        <isGrandmas>true</isGrandmas>
+    </cucumber>
+
+</VegetablesList>

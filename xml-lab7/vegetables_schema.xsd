@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<xs:schema
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.bsu.by"
+        xmlns="http://www.bsu.by"
+        elementFormDefault="qualified">
+
+    <xs:simpleType name="VegetableState" final="restriction">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="raw"/>
+            <xs:enumeration value="boiled"/>
+            <xs:enumeration value="roasted"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="TomatoColor" final="restriction">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="red"/>
+            <xs:enumeration value="orange"/>
+            <xs:enumeration value="yellow"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="Vegetable" abstract="true">
+        <xs:sequence>
+            <xs:element name="weightInGramms" type="xs:double"/>
+            <xs:element name="vegetableState" type="VegetableState"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Tomato">
+        <xs:complexContent>
+            <xs:extension base="Vegetable">
+                <xs:sequence>
+                    <xs:element name="tomatoColor" type="TomatoColor"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="Carrot">
+        <xs:complexContent>
+            <xs:extension base="Vegetable">
+                <xs:sequence>
+                    <xs:element name="isGeneticallyModified" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="Cucumber">
+        <xs:complexContent>
+            <xs:extension base="Vegetable">
+                <xs:sequence>
+                    <xs:element name="isGrandmas" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="VegetablesList">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice maxOccurs="unbounded" minOccurs="0">
+                    <xs:element name="tomato" type="Tomato"/>
+                    <xs:element name="carrot" type="Carrot"/>
+                    <xs:element name="cucumber" type="Cucumber"/>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
