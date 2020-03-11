@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <File name="AllLogsFile" fileName="all.log">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+        <File name="DaoFile" fileName="dao.log">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+        <File name="HibernateFile" fileName="hibernate.log">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Logger name="dao" level="trace" additivity="false">
+            <AppenderRef ref="AllLogsFile"/>
+            <AppenderRef ref="DaoFile"/>
+        </Logger>
+        <!-- Log everything in hibernate -->
+        <Logger name="org.hibernate" level="info" additivity="false">
+              <AppenderRef ref="HibernateFile" />
+        </Logger>
+        <!-- Log all SQL statements -->
+        <Logger name="org.hibernate.SQL" level="debug" additivity="false">
+              <AppenderRef ref="HibernateFile" />     
+        </Logger>
+        <Root level="error">
+            <AppenderRef ref="AllLogsFile"/>
+        </Root>
+    </Loggers>
+
+</Configuration>
