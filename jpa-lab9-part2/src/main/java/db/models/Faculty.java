@@ -26,7 +26,7 @@ public class Faculty {
     private int plan;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @Column(name = "subjects")
+    @JoinColumn(name = "subjects")
     @JoinTable(
         name = "subjects_for_faculties",
         joinColumns = @JoinColumn(name = "faculty_id"),

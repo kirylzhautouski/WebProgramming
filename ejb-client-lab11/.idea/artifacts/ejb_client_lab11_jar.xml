@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ejb-client-lab11:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ejb_client_lab11_jar</output-path>
+    <root id="archive" name="ejb-client-lab11.jar">
+      <element id="module-output" name="ejb-client-lab11" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../ejb-lab11/out/artifacts/ejb_lab11_jar/ejb-lab11.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

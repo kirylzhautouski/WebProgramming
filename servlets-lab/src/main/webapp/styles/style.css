@@ -1,0 +1,11 @@
+body {
+    background-color: palegreen;
+}
+
+p, h3, li, option, label {
+    font-family: 'Arial', sans-serif;
+}
+
+li {
+    color: white;
+}

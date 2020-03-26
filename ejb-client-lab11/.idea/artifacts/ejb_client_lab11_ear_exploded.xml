@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ear" name="ejb-client-lab11:ear exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/ejb_client_lab11_ear_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="ejb-client-lab11/javaeeApplication/javaEEApplication" />
+      <element id="directory" name="ejb.jar">
+        <element id="artifact" artifact-name="ejb-client-lab11:ejb exploded" />
+      </element>
+      <element id="directory" name="lib">
+        <element id="file-copy" path="$PROJECT_DIR$/../ejb-lab11/out/artifacts/ejb_lab11_jar/ejb-lab11.jar" />
+      </element>
+    </root>
+  </artifact>
+</component>
