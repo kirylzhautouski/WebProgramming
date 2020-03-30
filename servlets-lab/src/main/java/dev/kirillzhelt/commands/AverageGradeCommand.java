@@ -1,7 +1,7 @@
-package dev.kirillzhelt.db.commands;
+package dev.kirillzhelt.commands;
 
-import dev.kirillzhelt.db.commands.params.CommandParams;
-import dev.kirillzhelt.db.commands.params.FacultyCommandParams;
+import dev.kirillzhelt.commands.params.CommandParams;
+import dev.kirillzhelt.commands.params.FacultyCommandParams;
 import dev.kirillzhelt.db.models.Faculty;
 
 import javax.servlet.ServletException;

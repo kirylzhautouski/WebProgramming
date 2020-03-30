@@ -1,8 +1,8 @@
-package dev.kirillzhelt.db.commands;
+package dev.kirillzhelt.commands;
 
-import dev.kirillzhelt.db.commands.enrollees.AllEnrolleesCommand;
-import dev.kirillzhelt.db.commands.enrollees.AppliedEnrolleesCommand;
-import dev.kirillzhelt.db.commands.enrollees.EnrolleesAboveAverageCommand;
+import dev.kirillzhelt.commands.enrollees.AllEnrolleesCommand;
+import dev.kirillzhelt.commands.enrollees.AppliedEnrolleesCommand;
+import dev.kirillzhelt.commands.enrollees.EnrolleesAboveAverageCommand;
 
 import java.util.HashMap;
 import java.util.Map;

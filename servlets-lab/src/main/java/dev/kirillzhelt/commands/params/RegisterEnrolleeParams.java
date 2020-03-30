@@ -1,8 +1,7 @@
-package dev.kirillzhelt.db.commands.params;
+package dev.kirillzhelt.commands.params;
 
 import dev.kirillzhelt.db.daos.Dao;
 import dev.kirillzhelt.db.daos.FacultyDao;
-import dev.kirillzhelt.db.daos.UserDao;
 import dev.kirillzhelt.db.models.Application;
 import dev.kirillzhelt.db.models.User;
 

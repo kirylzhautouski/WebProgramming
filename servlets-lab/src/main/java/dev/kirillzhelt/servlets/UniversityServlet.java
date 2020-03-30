@@ -1,9 +1,9 @@
 package dev.kirillzhelt.servlets;
 
-import dev.kirillzhelt.db.commands.*;
-import dev.kirillzhelt.db.commands.params.CommandParams;
-import dev.kirillzhelt.db.commands.params.FacultyCommandParams;
-import dev.kirillzhelt.db.commands.params.RegisterEnrolleeParams;
+import dev.kirillzhelt.commands.*;
+import dev.kirillzhelt.commands.params.CommandParams;
+import dev.kirillzhelt.commands.params.FacultyCommandParams;
+import dev.kirillzhelt.commands.params.RegisterEnrolleeParams;
 import dev.kirillzhelt.db.daos.Dao;
 import dev.kirillzhelt.db.daos.FacultyDao;
 

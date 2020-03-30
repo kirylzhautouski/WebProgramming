@@ -1,4 +1,4 @@
-package dev.kirillzhelt.db.commands.params;
+package dev.kirillzhelt.commands.params;
 
 import dev.kirillzhelt.db.daos.Dao;
 import dev.kirillzhelt.db.daos.FacultyDao;

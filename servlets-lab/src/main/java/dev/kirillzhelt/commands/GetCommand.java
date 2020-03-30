@@ -1,6 +1,6 @@
-package dev.kirillzhelt.db.commands;
+package dev.kirillzhelt.commands;
 
-import dev.kirillzhelt.db.commands.params.CommandParams;
+import dev.kirillzhelt.commands.params.CommandParams;
 
 import javax.servlet.ServletException;
 import java.io.IOException;

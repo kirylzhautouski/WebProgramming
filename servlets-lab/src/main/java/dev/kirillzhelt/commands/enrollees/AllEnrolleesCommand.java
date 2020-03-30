@@ -1,4 +1,4 @@
-package dev.kirillzhelt.db.commands.enrollees;
+package dev.kirillzhelt.commands.enrollees;
 
 import dev.kirillzhelt.db.daos.Dao;
 import dev.kirillzhelt.db.models.Faculty;
