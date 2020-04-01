@@ -16,11 +16,11 @@
             </c:forEach>
         </select>
 
-        <input type="submit" value="All enrollees" formaction="/servlets_lab12_war_exploded/UniversityServlet/all-enrollees">
-        <input type="submit" value="Applied enrollees" formaction="/servlets_lab12_war_exploded/UniversityServlet/applied-enrollees">
-        <input type="submit" value="Above average" formaction="/servlets_lab12_war_exploded/UniversityServlet/above-average">
-        <input type="submit" value="Average grade" formaction="/servlets_lab12_war_exploded/UniversityServlet/average-grade">
-        <input type="submit" value="Register enrollee" formaction="/servlets_lab12_war_exploded/UniversityServlet/register-enrollee">
+        <input type="submit" value="All enrollees" formaction="/servlets-lab12/UniversityServlet/all-enrollees">
+        <input type="submit" value="Applied enrollees" formaction="/servlets-lab12/UniversityServlet/applied-enrollees">
+        <input type="submit" value="Above average" formaction="/servlets-lab12/UniversityServlet/above-average">
+        <input type="submit" value="Average grade" formaction="/servlets-lab12/UniversityServlet/average-grade">
+        <input type="submit" value="Register enrollee" formaction="/servlets-lab12/UniversityServlet/register-enrollee">
 
     </form>
 

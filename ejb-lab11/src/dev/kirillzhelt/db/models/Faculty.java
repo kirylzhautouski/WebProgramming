@@ -1,9 +1,6 @@
-package db.models;
+package dev.kirillzhelt.db.models;
 
-import org.hibernate.annotations.NamedQueries;
-import org.hibernate.annotations.NamedQuery;
 import javax.persistence.*;
-import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.Set;
 

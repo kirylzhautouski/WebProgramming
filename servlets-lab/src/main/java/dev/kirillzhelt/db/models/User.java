@@ -1,6 +1,7 @@
 package dev.kirillzhelt.db.models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,9 @@ import java.util.List;
 @NamedQueries(
     @NamedQuery(name = "User.login", query = "SELECT u.isAdmin FROM User u WHERE u.login=:login AND u.password=:password")
 )
-public class User {
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 1;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

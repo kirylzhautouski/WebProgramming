@@ -1,19 +1,14 @@
 package dev.kirillzhelt.db.models;
 
-import org.hibernate.annotations.NamedQueries;
-import org.hibernate.annotations.NamedQuery;
-
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
-@Entity
+@Entity(name = "Faculty")
 @Table(name = "faculty")
-@NamedQueries({
-    @NamedQuery(name="Faculty.findAll", query="SELECT f FROM Faculty f"),
-    @NamedQuery(name="Faculty.findAllNames", query="SELECT f.name FROM Faculty f"),
-    @NamedQuery(name="Faculty.get", query="SELECT f FROM Faculty f WHERE f.name=:name")
-})
-public class Faculty {
+public class Faculty implements Serializable {
+
+    private static final long serialVersionUID = 1;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

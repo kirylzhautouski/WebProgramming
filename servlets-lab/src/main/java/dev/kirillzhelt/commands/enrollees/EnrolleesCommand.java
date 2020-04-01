@@ -3,7 +3,7 @@ package dev.kirillzhelt.commands.enrollees;
 import dev.kirillzhelt.commands.params.CommandParams;
 import dev.kirillzhelt.commands.params.FacultyCommandParams;
 import dev.kirillzhelt.commands.GetCommand;
-import dev.kirillzhelt.db.daos.Dao;
+import dev.kirillzhelt.db.daos.interfaces.DaoInterface;
 import dev.kirillzhelt.db.models.Faculty;
 import dev.kirillzhelt.db.models.User;
 
@@ -39,5 +39,5 @@ public abstract class EnrolleesCommand implements GetCommand {
      * @param faculty
      * @return
      */
-    protected abstract Set<User> getEnrollees(Dao dao, Faculty faculty);
+    protected abstract Set<User> getEnrollees(DaoInterface dao, Faculty faculty);
 }

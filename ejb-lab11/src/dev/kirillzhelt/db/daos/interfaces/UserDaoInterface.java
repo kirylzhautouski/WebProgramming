@@ -1,4 +1,4 @@
-package db.daos.interfaces;
+package dev.kirillzhelt.db.daos.interfaces;
 
 import javax.ejb.Remote;
 

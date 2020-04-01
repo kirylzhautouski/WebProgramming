@@ -1,6 +1,6 @@
-package db.daos.interfaces;
+package dev.kirillzhelt.db.daos.interfaces;
 
-import db.models.Faculty;
+import dev.kirillzhelt.db.models.Faculty;
 
 import javax.ejb.Remote;
 import java.util.List;

@@ -4,11 +4,10 @@ import dev.kirillzhelt.commands.*;
 import dev.kirillzhelt.commands.params.CommandParams;
 import dev.kirillzhelt.commands.params.FacultyCommandParams;
 import dev.kirillzhelt.commands.params.RegisterEnrolleeParams;
-import dev.kirillzhelt.db.daos.Dao;
-import dev.kirillzhelt.db.daos.FacultyDao;
+import dev.kirillzhelt.db.daos.interfaces.DaoInterface;
+import dev.kirillzhelt.db.daos.interfaces.FacultyDaoInterface;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -21,23 +20,11 @@ import java.util.Date;
 @WebServlet("/UniversityServlet/*")
 public class UniversityServlet extends HttpServlet {
 
-    private EntityManagerFactory entityManagerFactory;
+    @EJB
+    private FacultyDaoInterface facultyDao;
 
-    private FacultyDao facultyDao;
-    private Dao dao;
-
-    /**
-     * Initialize daos
-     * @throws ServletException
-     */
-    @Override
-    public void init() throws ServletException {
-        super.init();
-
-        entityManagerFactory = Persistence.createEntityManagerFactory("UniversityDB");
-        facultyDao = new FacultyDao(entityManagerFactory);
-        dao = new Dao(entityManagerFactory);
-    }
+    @EJB
+    private DaoInterface dao;
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -57,7 +44,7 @@ public class UniversityServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String relativeURL = request.getRequestURI()
-            .replaceFirst("/servlets_lab12_war_exploded/UniversityServlet", "");
+            .replaceFirst("/servlets-lab12/UniversityServlet", "");
 
         Command command = CommandManager.getCommandForURL(relativeURL);
         if (command instanceof MainCommand) {
@@ -81,19 +68,12 @@ public class UniversityServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String relativeURL = request.getRequestURI()
-            .replaceFirst("/servlets_lab12_war_exploded/UniversityServlet", "");
+            .replaceFirst("/servlets-lab12/UniversityServlet", "");
 
         Command command = CommandManager.getCommandForURL(relativeURL);
         if (command instanceof PostCommand) {
             ((PostCommand) command).executePost(RegisterEnrolleeParams.fromPOSTParams(request, response, facultyDao, dao));
         }
-    }
-
-    @Override
-    public void destroy() {
-        super.destroy();
-
-        entityManagerFactory.close();
     }
 
     private void updateUserCookies(HttpServletRequest request, HttpServletResponse response) {

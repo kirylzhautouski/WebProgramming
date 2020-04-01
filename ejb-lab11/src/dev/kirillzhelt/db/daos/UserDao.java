@@ -1,10 +1,8 @@
-package db.daos;
+package dev.kirillzhelt.db.daos;
 
-import db.daos.interfaces.UserDaoInterface;
-import db.models.User;
-import db.models.User_;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import dev.kirillzhelt.db.daos.interfaces.UserDaoInterface;
+import dev.kirillzhelt.db.models.User;
+import dev.kirillzhelt.db.models.User_;
 
 import javax.ejb.Stateless;
 import javax.persistence.*;

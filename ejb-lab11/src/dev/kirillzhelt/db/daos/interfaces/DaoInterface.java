@@ -1,9 +1,10 @@
-package db.daos.interfaces;
+package dev.kirillzhelt.db.daos.interfaces;
 
-import db.models.Faculty;
-import db.models.User;
+import dev.kirillzhelt.db.models.Faculty;
+import dev.kirillzhelt.db.models.User;
 
 import javax.ejb.Remote;
+import java.rmi.RemoteException;
 import java.util.Set;
 
 @Remote

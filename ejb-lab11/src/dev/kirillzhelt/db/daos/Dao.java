@@ -1,37 +1,46 @@
 package dev.kirillzhelt.db.daos;
 
 
+import dev.kirillzhelt.db.daos.interfaces.DaoInterface;
 import dev.kirillzhelt.db.models.*;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import dev.kirillzhelt.db.models.Application_;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Root;
+import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Class that is used to work with database objects using queries with joins
  */
-public class Dao {
+@Stateless
+public class Dao implements DaoInterface {
 
     /** Dao's logger */
-    private static final Logger DAO_LOGGER = LogManager.getLogger("dao");
+//    private static final Logger DAO_LOGGER = LogManager.getLogger("dao");
 
-    /** Factory used to create managers */
-    private EntityManagerFactory entityManagerFactory;
+    @PersistenceContext(unitName = "Test_Local")
+    private EntityManager manager;
 
     /**
      * Initializes a newly created Dao object
      */
     public Dao(EntityManagerFactory entityManagerFactory) {
-        DAO_LOGGER.info("Dao is initialized");
+//        DAO_LOGGER.info("Dao is initialized");
 
-        this.entityManagerFactory = entityManagerFactory;
+        this.manager = entityManagerFactory.createEntityManager();
+    }
+
+    public Dao() {
+
     }
 
     /**
@@ -40,9 +49,8 @@ public class Dao {
      * @return An average grade
      */
     public double getAverage(Faculty faculty) {
-        DAO_LOGGER.info("Get average query");
+//        DAO_LOGGER.info("Get average query");
 
-        EntityManager manager = entityManagerFactory.createEntityManager();
         CriteriaBuilder cb = manager.getCriteriaBuilder();
 
         CriteriaQuery<Double> query = cb.createQuery(Double.class);
@@ -50,7 +58,6 @@ public class Dao {
         query.select(cb.avg(applicationRoot.get(Application_.grade))).where(cb.equal(applicationRoot.get(Application_.faculty), faculty));
 
         double result = manager.createQuery(query).getSingleResult();
-        manager.close();
         return result;
     }
 
@@ -60,9 +67,8 @@ public class Dao {
      * @return Registered Enrollees
      */
     public Set<User> getRegisteredEnrollees(Faculty faculty) {
-        DAO_LOGGER.info("Get all registered enrollees");
+//        DAO_LOGGER.info("Get all registered enrollees");
 
-        EntityManager manager = entityManagerFactory.createEntityManager();
         CriteriaBuilder cb = manager.getCriteriaBuilder();
 
         CriteriaQuery<User> query = cb.createQuery(User.class);
@@ -70,7 +76,6 @@ public class Dao {
         query.select(applicationRoot.get(Application_.user)).where(cb.equal(applicationRoot.get(Application_.faculty), faculty));
 
         Set<User> result = new HashSet<User>(manager.createQuery(query).getResultList());
-        manager.close();
         return result;
     }
 
@@ -80,11 +85,10 @@ public class Dao {
      * @return Enrollees
      */
     public Set<User> getEnrolleesAboveAverage(Faculty faculty) {
-        DAO_LOGGER.info("Get enrollees above average");
+//        DAO_LOGGER.info("Get enrollees above average");
 
         double average = this.getAverage(faculty);
 
-        EntityManager manager = entityManagerFactory.createEntityManager();
         CriteriaBuilder cb = manager.getCriteriaBuilder();
 
         CriteriaQuery<User> query = cb.createQuery(User.class);
@@ -95,7 +99,6 @@ public class Dao {
             .having(cb.gt(cb.avg(applicationRoot.getParent().get(Application_.grade)), average));
 
         Set<User> result = new HashSet<User>(manager.createQuery(query).getResultList());
-        manager.close();
         return result;
     }
 
@@ -105,20 +108,17 @@ public class Dao {
      * @return Applied enrollees
      */
     public Set<User> getAppliedEnrollees(Faculty faculty) {
-        DAO_LOGGER.info("Get applied enrollees");
+//        DAO_LOGGER.info("Get applied enrollees");
 
-        EntityManager manager = entityManagerFactory.createEntityManager();
         CriteriaBuilder cb = manager.getCriteriaBuilder();
 
         CriteriaQuery<User> query = cb.createQuery(User.class);
         Join<Application, User> applicationRoot = query.from(Application.class).join(Application_.user);
         query.select(applicationRoot)
             .where(cb.equal(applicationRoot.getParent().get(Application_.faculty), faculty))
-            .groupBy(applicationRoot)
-            .orderBy(cb.desc(cb.avg(applicationRoot.getParent().get(Application_.grade))));
+            .groupBy(applicationRoot);
 
         Set<User> result = new HashSet<User>(manager.createQuery(query).setMaxResults(faculty.getPlan()).getResultList());
-        manager.close();
         return result;
     }
 
@@ -127,13 +127,8 @@ public class Dao {
      * @param enrollee Enrollee
      */
     public void registerEnrollee(User enrollee) {
-        DAO_LOGGER.info("Register enrollee query");
-
-        EntityManager manager = entityManagerFactory.createEntityManager();
-        manager.getTransaction().begin();
+//        DAO_LOGGER.info("Register enrollee query");
         manager.merge(enrollee);
-        manager.getTransaction().commit();
-        manager.close();
     }
 
 }

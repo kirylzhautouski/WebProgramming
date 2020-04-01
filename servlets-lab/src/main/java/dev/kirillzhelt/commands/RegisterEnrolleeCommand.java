@@ -3,12 +3,14 @@ package dev.kirillzhelt.commands;
 import dev.kirillzhelt.commands.params.CommandParams;
 import dev.kirillzhelt.commands.params.FacultyCommandParams;
 import dev.kirillzhelt.commands.params.RegisterEnrolleeParams;
-import dev.kirillzhelt.db.daos.FacultyDao;
+import dev.kirillzhelt.db.daos.interfaces.FacultyDaoInterface;
 import dev.kirillzhelt.db.models.Application;
 import dev.kirillzhelt.db.models.Faculty;
 import dev.kirillzhelt.db.models.Subject;
 import dev.kirillzhelt.db.models.User;
 
+import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -50,15 +52,20 @@ public class RegisterEnrolleeCommand implements GetCommand, PostCommand {
 
         User user = registerEnrolleeParams.getUser();
 
-        FacultyDao facultyDao = registerEnrolleeParams.getFacultyDao();
+        FacultyDaoInterface facultyDao = registerEnrolleeParams.getFacultyDao();
         Faculty faculty = facultyDao.getFaculty(request.getParameter("facultyName"));
 
         for (Subject subject : faculty.getSubjects()) {
             user.addApplication(new Application(user, faculty, subject, Integer.parseInt(request.getParameter(subject.getName()))));
         }
 
-        registerEnrolleeParams.getDao().registerEnrollee(user);
+        try {
+            registerEnrolleeParams.getDao().registerEnrollee(user);
+        } catch (EJBException ex) {
+            request.getSession().setAttribute("errorMessage", ex.getMessage());
+            registerEnrolleeParams.getRequest().getRequestDispatcher("/views/error_page.jsp").forward(registerEnrolleeParams.getRequest(), registerEnrolleeParams.getResponse());
+        }
 
-        registerEnrolleeParams.getResponse().sendRedirect("/servlets_lab12_war_exploded/UniversityServlet");
+        registerEnrolleeParams.getResponse().sendRedirect("/servlets-lab12/UniversityServlet");
     }
 }

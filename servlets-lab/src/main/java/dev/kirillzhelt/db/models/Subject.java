@@ -1,11 +1,14 @@
 package dev.kirillzhelt.db.models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
 @Table(name = "subject")
-public class Subject {
+public class Subject implements Serializable {
+
+    private static final long serialVersionUID = 1;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,7 +18,7 @@ public class Subject {
     private String name;
 
     @ManyToMany(mappedBy = "subjects")
-    @Column(name = "faculties")
+    @JoinColumn(name = "faculties")
     private Set<Faculty> faculties;
 
     @OneToMany(mappedBy = "subject")

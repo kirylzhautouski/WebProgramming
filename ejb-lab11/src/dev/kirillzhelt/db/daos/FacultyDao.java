@@ -1,16 +1,13 @@
-package db.daos;
+package dev.kirillzhelt.db.daos;
 
-import db.daos.interfaces.FacultyDaoInterface;
-import db.models.Faculty;
-import db.models.Faculty_;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import dev.kirillzhelt.db.daos.interfaces.FacultyDaoInterface;
+import dev.kirillzhelt.db.models.Faculty;
+import dev.kirillzhelt.db.models.Faculty_;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;

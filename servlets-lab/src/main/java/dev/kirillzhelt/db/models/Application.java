@@ -1,6 +1,7 @@
 package dev.kirillzhelt.db.models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "application")
@@ -10,7 +11,9 @@ import javax.persistence.*;
     @NamedQuery(name="Application.getSortedByAverage", query="SELECT u FROM Application a JOIN a.user u WHERE a.faculty=:faculty GROUP BY u ORDER BY AVG(a.grade) DESC"),
     @NamedQuery(name="Application.getAverage", query="SELECT AVG(a.grade) FROM Application a WHERE a.faculty=:faculty")
 })
-public class Application {
+public class Application implements Serializable {
+
+    private static final long serialVersionUID = 1;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

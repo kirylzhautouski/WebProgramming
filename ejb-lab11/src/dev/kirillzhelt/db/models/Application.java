@@ -1,4 +1,4 @@
-package db.models;
+package dev.kirillzhelt.db.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
