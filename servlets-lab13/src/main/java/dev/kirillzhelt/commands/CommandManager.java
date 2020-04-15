@@ -1,6 +1,5 @@
 package dev.kirillzhelt.commands;
 
-import dev.kirillzhelt.LoginUserCommand;
 import dev.kirillzhelt.commands.enrollees.AllEnrolleesCommand;
 import dev.kirillzhelt.commands.enrollees.AppliedEnrolleesCommand;
 import dev.kirillzhelt.commands.enrollees.EnrolleesAboveAverageCommand;

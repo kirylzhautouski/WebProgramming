@@ -1,4 +1,4 @@
-package dev.kirillzhelt;
+package dev.kirillzhelt.commands;
 
 import dev.kirillzhelt.commands.GetCommand;
 import dev.kirillzhelt.commands.PostCommand;
