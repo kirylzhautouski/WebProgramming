@@ -17,9 +17,12 @@ public class LoggedFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest)servletRequest;
         HttpServletResponse response = (HttpServletResponse)servletResponse;
 
-        boolean isLoginPage = request.getRequestURI().equals("/servlets_lab13_war_exploded/UniversityServlet/login-user");
+        boolean isAllowedPageForAnons = request.getRequestURI()
+                .equals("/servlets_lab13_war_exploded/UniversityServlet/login-user") ||
+            request.getRequestURI()
+                .equals("/servlets_lab13_war_exploded/UniversityServlet/register-user");
 
-        if (request.getSession().getAttribute("user") == null && !isLoginPage) {
+        if (request.getSession().getAttribute("user") == null && !isAllowedPageForAnons) {
             response.sendRedirect("/servlets_lab13_war_exploded/UniversityServlet/login-user");
         } else {
             filterChain.doFilter(servletRequest, servletResponse);

@@ -29,5 +29,7 @@
     <input type="submit" value="Register employee">
 </form>
 
+<p style="color: red">${errorMessage}</p>
+
 </body>
 </html>

@@ -49,7 +49,7 @@ public class RegisterUserCommand implements GetCommand, PostCommand {
         String password = request.getParameter("password");
 
         boolean isAdmin = false;
-        if (request.getParameter("is-admin").equals("on")) {
+        if (request.getParameter("is-admin") != null && request.getParameter("is-admin").equals("on")) {
             isAdmin = true;
         }
         User user = new User(name, isAdmin, login, password);
